@@ -1,0 +1,121 @@
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+branch = true
+source = ["pgjsonschema"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "pass",
+    "pytest.mark.skip"
+]
+show_missing = true
+fail_under = 100
+
+[tool.poetry]
+name = "django-pgjsonschema"
+packages = [
+  { include = "pgjsonschema" }
+]
+exclude = [
+  "*/tests/"
+]
+version = "0.0.0"
+description = "Postgres JSON validation with Rust triggers."
+authors = ["Max Muoto"]
+classifiers = [
+  "Framework :: Django",
+  "Framework :: Django :: 3.2",
+  "Framework :: Django :: 4.0",
+  "Framework :: Django :: 4.1",
+  "Framework :: Django :: 4.2",
+  "Framework :: Django :: 5.0",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+  "Framework :: Django",
+]
+license = "BSD-3-Clause"
+readme = "README.md"
+homepage = "https://github.com/Opus10/django-pgjsonschema"
+repository = "https://github.com/Opus10/django-pgjsonschema"
+documentation = "https://django-pgjsonschema.readthedocs.io"
+
+[tool.poetry.dependencies]
+python = ">=3.11.0,<4"
+django = ">=3"
+django-pgtrigger = "^4.11.1"
+pydantic = "^2.7.0"
+
+[tool.poetry.dev-dependencies]
+dj-database-url = "2.1.0"
+git-tidy = "1.2.0"
+psycopg2-binary = "2.9.9"
+pytest = "7.4.2"
+pytest-cov = "4.1.0"
+pytest-dotenv = "0.5.2"
+pytest-django = "4.5.2"
+django-dynamic-fixture = "4.0.1"
+tox = "4.11.3"
+ruff = "0.3.7"
+mkdocs = "1.5.3"
+mkdocs-material = "9.4.4"
+mkdocstrings-python = "1.7.2"
+footing = "*"
+setuptools = "*"
+poetry-core = "*"
+
+[tool.pytest.ini_options]
+xfail_strict = true
+addopts = "--reuse-db"
+testpaths = "pgjsonschema/tests"
+norecursedirs = ".venv"
+DJANGO_SETTINGS_MODULE = "settings"
+
+[tool.ruff]
+src = ["pgjsonschema"]
+lint.select = [
+    "I",    # isort
+    "E",    # pycodestyle error
+    "F",    # pycodestyle warning
+    "PT",   # flake8-pytest-style
+    "G",    # flake8-logging-format
+    "C4",   # flake8-comprehensions
+    "TID",  # flake8-tidy-imports
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "PTH",  # flake8-use-pathlib
+    "B",    # flake8-bugbear
+    "S",    # flake8-bandit
+    "DTZ",  # flake8-datetimez
+    "UP",   # pyupgrade
+    "PL",   # Pylint
+    "PERF", # PERF
+    "RUF",  # Ruff-specific rules
+]
+lint.ignore = [
+    "E501",   # Ignore line length.
+    "C408",   # Allow for explicit dict, tuple, and list construction.
+    "RUF012", # Don't have to annotate mutable class vars.
+    "E402",   # Sometimes you want explicit control over where an import occurs.
+]
+target-version = "py311"
+
+[tool.pyright]
+include = ["pgjsonschema"]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "src/experimental",
+    "src/typestubs",
+]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
