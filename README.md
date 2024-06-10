@@ -38,7 +38,7 @@ class MyModel(models.Model):
     data: Validator[dict[str, Any]] = models.JSONField()
 ```
 
-Adding this annotation will install a trigger on your Django model that will validate against the schema at the database level. This is done using [django-pgtrigger](https://github.com/Opus10/django-pgtrigger), another Opus 10 library used to manage the installation of Postgres triggers in Django applications. The installed trigger is built on [pl/rust](https://github.com/tcdi/plrust), which is a required Postgres extension for `django-pgjsonschema`.
+Adding this annotation will install a trigger on your Django model that will validate against the schema at the database level. This is done using [django-pgtrigger](https://github.com/Opus10/django-pgtrigger), which is used to manage the installation of Postgres triggers in Django applications. The installed trigger is built on [pl/rust](https://github.com/tcdi/plrust), which is a required Postgres extension for `django-pgjsonschema`.
 
 ## Compatibility
 

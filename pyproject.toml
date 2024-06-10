@@ -45,9 +45,6 @@ classifiers = [
 ]
 license = "BSD-3-Clause"
 readme = "README.md"
-homepage = "https://github.com/Opus10/django-pgjsonschema"
-repository = "https://github.com/Opus10/django-pgjsonschema"
-documentation = "https://django-pgjsonschema.readthedocs.io"
 
 [tool.poetry.dependencies]
 python = ">=3.11.0,<4"
